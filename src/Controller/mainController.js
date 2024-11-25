@@ -2,6 +2,7 @@ import { InputHandler } from '../View/inputView.js';
 import { OutputHandler } from '../View/outputView.js';
 
 import { calculatePurchaseCount } from '../Model/purchaseCountCalculator.js';
+import { issueLottoList } from '../Model/lottoListMaker.js';
 
 export class MainController {
   constructor() {
@@ -16,8 +17,10 @@ export class MainController {
     // 로또 구매 수 출력
     this.output.printPurchaseCount(purchaseCount);
 
-    //   // 결과 출력
-    //   this.output.printRaceStatus(parsedCarNames, raceStatus);
+    const purchasedLottoList = issueLottoList(purchaseCount);
+
+    this.output.printIssuedLottoList(purchasedLottoList);
+
     //   this.output.printFinalWinners(parsedCarNames, findWinnerIndex);
     // }
   }
