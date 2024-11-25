@@ -2,7 +2,7 @@ export class WinningNumbersValidator {
   validateWinningNumbers(winningNumbers) {
     this.winningNumbers = winningNumbers.split(',');
     this.winningNumbers = this.winningNumbers.map(Number);
-
+    
     this.getValidationChecks().forEach((arr) => {
       if (arr[0]) throw new Error(arr[1]);
     });

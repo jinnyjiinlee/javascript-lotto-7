@@ -53,16 +53,11 @@ export class InputHandler {
         this.bonusNumber = await Console.readLineAsync(
           INPUT_MESSAGES.BONUS_NUMBER,
         );
-        this.bonusNumberValidator.validateBonusNumber(this.bonusNumber);
+        this.bonusNumberValidator.validateBonusNumber(this.bonusNumber, this.winningNumbers);
         return this.bonusNumber;
       } catch (e) {
         Console.print(e.message);
       }
     }
   }
-
-  // // TODO: 공부하기, 리턴할때는 await 생략 가능?
-  // async getRacingCountInput() {
-  //   return Console.readLineAsync(INPUT_MESSAGES.RACING_COUNT);
-  // }
 }

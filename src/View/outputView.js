@@ -1,6 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
 import { MATCHES } from '../Constant/constants.js';
-// import { INPUT_MESSAGES } from '../Constant/messages.js';
 
 export class OutputHandler {
   printPurchaseCount(purchaseCount) {
@@ -14,7 +13,7 @@ export class OutputHandler {
     });
   }
 
-  // TODO: 리펙토링 - 상수 처리 하기
+  // TODO: 리펙토링 - 상수 처리
   printWinningStatistics() {
     Console.print('\n당첨 통계');
     Console.print('---');
@@ -23,11 +22,11 @@ export class OutputHandler {
         `4개 일치 (50,000원) - ${MATCHES.FOUR_MATCHES}개\n` +
         `5개 일치 (1,500,000원) - ${MATCHES.FIVE_MATCHES}개\n` +
         `5개 일치, 보너스 볼 일치 (30,000,000원) - ${MATCHES.FIVE_MATCHES_BONUS}개\n` +
-        `6개 일치 (2,000,000,000원) - ${MATCHES.SIX_MATCHES}개\n`,
+        `6개 일치 (2,000,000,000원) - ${MATCHES.SIX_MATCHES}개`,
     );
   }
 
   printRateOfReturn(rateOfReturn) {
-    Console.print(`\n총 수익률은 ${rateOfReturn}%입니다.`);
+    Console.print(`총 수익률은 ${rateOfReturn}%입니다.`);
   }
 }

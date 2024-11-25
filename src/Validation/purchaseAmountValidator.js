@@ -1,7 +1,7 @@
 export class PurchaseAmountValidator {
   validatePurchaseAmount(purchaseAmount) {
     this.purchaseAmount = purchaseAmount;
-
+    
     this.getValidationChecks().forEach((arr) => {
       if (arr[0]) throw new Error(arr[1]);
     });
@@ -20,17 +20,6 @@ export class PurchaseAmountValidator {
   isNotPriceUnit() {
     return this.purchaseAmount % 1000 !== 0;
   }
-
-
-
-  // // TODO: 정리해서 공부하기 every 가 아니라 some
-  // hasNumericCharacters() {
-  //   return this.parseCarNames.some((carName) => /\d/.test(carName));
-  // }
-
-  // isValidLength() {
-  //   return this.parseCarNames.some((carName) => carName.length > 5);
-  // }
 
   // TODO: 리펙토링 - 상수처리
   getValidationChecks() {

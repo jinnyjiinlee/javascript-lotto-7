@@ -7,7 +7,6 @@ export class MatchesHandler {
     this.bonusNumber = bonusNumber;
 
     this.winningNumberToArr();
-
     this.findSameNumbers();
     this.findSameNumberForBonus();
   }
@@ -22,7 +21,7 @@ export class MatchesHandler {
       const sameNumberCount = this.winningNumbers.filter((it) =>
         this.lottoList[i].includes(it),
       ).length;
-
+      // TODO: 리펙토링 - 간소화하게 하기
       if (sameNumberCount === 3) {
         MATCHES.THREE_MATCHES += 1;
       }
@@ -42,13 +41,7 @@ export class MatchesHandler {
   }
 
   findSameNumberForBonus() {
-    this.winningNumberAndBonusNumber = [];
-
-    this.winningNumberAndBonusNumber = [...this.winningNumbers]; // 위닝 넘버
-    this.winningNumberAndBonusNumber.push(Number(this.bonusNumber)); // 보너스 넘버
-
-    // console.log(this.winningNumberAndBonusNumber);
-
+    this.makeBonusNumberPlusArr();
     for (let i = 0; i < this.lottoList.length; i += 1) {
       const sameNumberCount = this.winningNumberAndBonusNumber.filter((it) =>
         this.lottoList[i].includes(it),
@@ -58,5 +51,11 @@ export class MatchesHandler {
         MATCHES.FIVE_MATCHES_BONUS += 1;
       }
     }
+  }
+
+  makeBonusNumberPlusArr() {
+    this.winningNumberAndBonusNumber = [];
+    this.winningNumberAndBonusNumber = [...this.winningNumbers];
+    this.winningNumberAndBonusNumber.push(Number(this.bonusNumber));
   }
 }

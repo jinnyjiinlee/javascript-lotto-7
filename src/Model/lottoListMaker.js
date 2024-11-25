@@ -1,4 +1,4 @@
-import { Console, Random } from '@woowacourse/mission-utils';
+import { Random } from '@woowacourse/mission-utils';
 
 export const issueLottoList = (purchaseCount) => {
   const purchasedLottoList = [];
@@ -9,5 +9,4 @@ export const issueLottoList = (purchaseCount) => {
   }
 
   return purchasedLottoList;
-
 };

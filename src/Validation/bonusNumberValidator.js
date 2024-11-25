@@ -1,6 +1,8 @@
 export class BonusNumberValidator {
-  validateBonusNumber(bonusNumber) {
+  validateBonusNumber(bonusNumber, winningNumbers) {
     this.bonusNumber = bonusNumber;
+    this.winningNumbers = winningNumbers.split(',');
+    this.winningNumbers = this.winningNumbers.map(Number);
 
     this.getValidationChecks().forEach((arr) => {
       if (arr[0]) throw new Error(arr[1]);
@@ -13,7 +15,6 @@ export class BonusNumberValidator {
     return this.bonusNumber === '';
   }
 
-  // TODO: 배열 하나씩 돌면서 검사하기
   isNotStringNumeric() {
     return Number.isNaN(Number(this.bonusNumber));
   }
@@ -22,14 +23,11 @@ export class BonusNumberValidator {
     return Number(this.bonusNumber) === 0 || Number(this.bonusNumber) > 45;
   }
 
-  // // TODO: 정리해서 공부하기 every 가 아니라 some
-  // hasNumericCharacters() {
-  //   return this.parseCarNames.some((carName) => /\d/.test(carName));
-  // }
-
-  // isValidLength() {
-  //   return this.parseCarNames.some((carName) => carName.length > 5);
-  // }
+  isDuplicateWithWinningNumber() {
+    return this.winningNumbers.some(
+      (number) => number === Number(this.bonusNumber),
+    );
+  }
 
   // TODO: 리펙토링 - 상수처리
   getValidationChecks() {
@@ -40,6 +38,7 @@ export class BonusNumberValidator {
         this.isNotScope(),
         '[ERROR] 1부터 45사이 범위를 넘어가는 숫자를 입력하셨습니다.',
       ],
+      [this.isDuplicateWithWinningNumber(), '[ERROR] 당첨 번호와 보너스 넘버가 중복됩니다.'],
     ];
   }
 }
