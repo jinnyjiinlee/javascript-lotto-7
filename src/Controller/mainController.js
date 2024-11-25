@@ -21,6 +21,9 @@ export class MainController {
 
     this.output.printIssuedLottoList(purchasedLottoList);
 
+    const winningNumbers = await this.input.getWinningNumbersInput();
+
+
     //   this.output.printFinalWinners(parsedCarNames, findWinnerIndex);
     // }
   }
