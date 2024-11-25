@@ -18,12 +18,10 @@ export class PurchaseAmountValidator {
   }
 
   isNotPriceUnit() {
-    return this.purchaseAmount % 1000 !== 0
+    return this.purchaseAmount % 1000 !== 0;
   }
 
-  isScope() {
-    return this.month === 0 || this.month > 12;
-  }
+
 
   // // TODO: 정리해서 공부하기 every 가 아니라 some
   // hasNumericCharacters() {
@@ -34,7 +32,7 @@ export class PurchaseAmountValidator {
   //   return this.parseCarNames.some((carName) => carName.length > 5);
   // }
 
-  // TODO: 리펙토링 - 상수처리 
+  // TODO: 리펙토링 - 상수처리
   getValidationChecks() {
     return [
       [this.isEmpty(), '[ERROR] 빈 값을 입력하셨습니다.'],

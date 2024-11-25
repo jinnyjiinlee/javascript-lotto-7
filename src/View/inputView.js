@@ -5,14 +5,26 @@ import { WinningNumbersValidator } from '../Validation/winningNumbersValidatior.
 import { BonusNumberValidator } from '../Validation/bonusNumberValidator.js';
 
 export class InputHandler {
+  constructor() {
+    this.purchaseAmount = null;
+    this.winningNumbers = null;
+    this.bonusNumber = null;
+
+    this.purchaseAmountValidator = new PurchaseAmountValidator();
+    this.winningNumbersValidator = new WinningNumbersValidator();
+    this.bonusNumberValidator = new BonusNumberValidator();
+  }
+
   async getPurchaseAmountInput() {
     while (true) {
       try {
-        const purchaseAmount = await Console.readLineAsync(
+        this.purchaseAmount = await Console.readLineAsync(
           INPUT_MESSAGES.PURCHASE_AMOUNT,
         );
-        new PurchaseAmountValidator().validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount;
+        this.purchaseAmountValidator.validatePurchaseAmount(
+          this.purchaseAmount,
+        );
+        return this.purchaseAmount;
       } catch (e) {
         Console.print(e.message);
       }
@@ -22,11 +34,13 @@ export class InputHandler {
   async getWinningNumbersInput() {
     while (true) {
       try {
-        const winningNumbers = await Console.readLineAsync(
+        this.winningNumbers = await Console.readLineAsync(
           INPUT_MESSAGES.WINNING_NUMBERS,
         );
-        new WinningNumbersValidator().validateWinningNumbers(winningNumbers);
-        return winningNumbers;
+        this.winningNumbersValidator.validateWinningNumbers(
+          this.winningNumbers,
+        );
+        return this.winningNumbers;
       } catch (e) {
         Console.print(e.message);
       }
@@ -36,11 +50,11 @@ export class InputHandler {
   async getBonusNumberInput() {
     while (true) {
       try {
-        const bonusNumber = await Console.readLineAsync(
+        this.bonusNumber = await Console.readLineAsync(
           INPUT_MESSAGES.BONUS_NUMBER,
         );
-        new BonusNumberValidator().validateBonusNumber(bonusNumber);
-        return bonusNumber;
+        this.bonusNumberValidator.validateBonusNumber(this.bonusNumber);
+        return this.bonusNumber;
       } catch (e) {
         Console.print(e.message);
       }

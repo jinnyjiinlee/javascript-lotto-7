@@ -18,7 +18,7 @@ export class BonusNumberValidator {
     return Number.isNaN(Number(this.bonusNumber));
   }
 
-  isExceedScope() {
+  isNotScope() {
     return Number(this.bonusNumber) === 0 || Number(this.bonusNumber) > 45;
   }
 
@@ -37,7 +37,7 @@ export class BonusNumberValidator {
       [this.isEmpty(), '[ERROR] 빈 값을 입력하셨습니다.'],
       [this.isNotStringNumeric(), '[ERROR] 숫자를 입력하지 않으셨습니다.'],
       [
-        this.isExceedScope(),
+        this.isNotScope(),
         '[ERROR] 1부터 45사이 범위를 넘어가는 숫자를 입력하셨습니다.',
       ],
     ];

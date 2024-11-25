@@ -1,42 +1,44 @@
 export class WinningNumbersValidator {
   validateWinningNumbers(winningNumbers) {
-    this.winningNumbers = winningNumbers;
+    this.winningNumbers = winningNumbers.split(',');
+    this.winningNumbers = this.winningNumbers.map(Number);
 
-    // this.getValidationChecks().forEach((arr) => {
-    //   if (arr[0]) throw new Error(arr[1]);
-    // });
+    this.getValidationChecks().forEach((arr) => {
+      if (arr[0]) throw new Error(arr[1]);
+    });
 
     return true;
   }
 
   isEmpty() {
-    return this.winningNumbers === '';
+    return this.winningNumbers[0] === '';
   }
 
-  // TODO: 배열 하나씩 돌면서 검사하기
-  isNotStringNumeric() {
-    return Number.isNaN(Number(this.winningNumbers));
+  isStringNumeric() {
+    return this.winningNumbers.some((number) => Number.isNaN(Number(number)));
   }
 
-  // isScope() {
-  //   return this.month === 0 || this.month > 12;
-  // }
+  isNotScope() {
+    return this.winningNumbers.some((number) => number === 0 || number > 45);
+  }
 
-  // // TODO: 정리해서 공부하기 every 가 아니라 some
-  // hasNumericCharacters() {
-  //   return this.parseCarNames.some((carName) => /\d/.test(carName));
-  // }
+  isSixDigits() {
+    return this.winningNumbers.length !== 6;
+  }
 
-  // isValidLength() {
-  //   return this.parseCarNames.some((carName) => carName.length > 5);
-  // }
+  checkDuplicatedDigits() {
+    const uniqueWinningNumber = new Set(this.winningNumbers);
+    if (uniqueWinningNumber.size !== this.winningNumbers.length) return true;
+  }
 
   // TODO: 리펙토링 - 상수처리
   getValidationChecks() {
     return [
       [this.isEmpty(), '[ERROR] 빈 값을 입력하셨습니다.'],
-
-      [this.isNotStringNumeric(), '[ERROR] 숫자를 입력하지 않으셨습니다.'],
+      [this.isStringNumeric(), '[ERROR] 숫자를 입력하지 않으셨습니다.'],
+      [this.isNotScope(), '[ERROR] 1부터 45까지의 숫자가 아닙니다.'],
+      [this.isSixDigits(), '[ERROR] 숫자 6개를 입력하지 않으셨습니다.'],
+      [this.checkDuplicatedDigits(), '[ERROR] 중복된 숫자를 입력하셨습니다.'],
     ];
   }
 }
