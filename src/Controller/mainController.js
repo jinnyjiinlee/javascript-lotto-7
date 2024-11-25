@@ -12,7 +12,6 @@ export class MainController {
 
   async startProgram() {
     const purchaseAmount = await this.input.getPurchaseAmountInput();
-
     const purchaseCount = calculatePurchaseCount(purchaseAmount);
     // 로또 구매 수 출력
     this.output.printPurchaseCount(purchaseCount);
@@ -22,7 +21,7 @@ export class MainController {
     this.output.printIssuedLottoList(purchasedLottoList);
 
     const winningNumbers = await this.input.getWinningNumbersInput();
-
+    const bonusNumber = await this.input.getBonusNumberInput();
 
     //   this.output.printFinalWinners(parsedCarNames, findWinnerIndex);
     // }

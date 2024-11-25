@@ -2,6 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from '../Constant/messages.js';
 import { PurchaseAmountValidator } from '../Validation/purchaseAmountValidator.js';
 import { WinningNumbersValidator } from '../Validation/winningNumbersValidatior.js';
+import { BonusNumberValidator } from '../Validation/bonusNumberValidator.js';
 
 export class InputHandler {
   async getPurchaseAmountInput() {
@@ -26,6 +27,20 @@ export class InputHandler {
         );
         new WinningNumbersValidator().validateWinningNumbers(winningNumbers);
         return winningNumbers;
+      } catch (e) {
+        Console.print(e.message);
+      }
+    }
+  }
+
+  async getBonusNumberInput() {
+    while (true) {
+      try {
+        const bonusNumber = await Console.readLineAsync(
+          INPUT_MESSAGES.BONUS_NUMBER,
+        );
+        new BonusNumberValidator().validateBonusNumber(bonusNumber);
+        return bonusNumber;
       } catch (e) {
         Console.print(e.message);
       }
