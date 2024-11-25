@@ -14,7 +14,7 @@ export class OutputHandler {
     });
   }
 
-  // 당첨내역을 프린트 한다.
+  // TODO: 리펙토링 - 상수 처리 하기
   printWinningStatistics() {
     Console.print('\n당첨 통계');
     Console.print('---');
