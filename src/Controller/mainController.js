@@ -5,6 +5,9 @@ import { calculatePurchaseCount } from '../Model/purchaseCountCalculator.js';
 import { issueLottoList } from '../Model/lottoListMaker.js';
 import { parseWinningNumbers } from '../Model/winningNumbersParser.js';
 
+import { MatchesHandler } from '../Model/winningNumbersMatcher.js';
+// import 안되는 이유아시는 분 ㅠㅠ
+
 export class MainController {
   constructor() {
     this.input = new InputHandler();
@@ -23,13 +26,17 @@ export class MainController {
 
     const winningNumbers = await this.input.getWinningNumbersInput();
 
-    const parsedWinningNUmbers = parseWinningNumbers(winningNumbers);
-
-    console.log('parsedWinningNUmbers: ', parsedWinningNUmbers)
+    const parsedWinningNumbers = parseWinningNumbers(winningNumbers);
 
     const bonusNumber = await this.input.getBonusNumberInput();
 
-    //   this.output.printFinalWinners(parsedCarNames, findWinnerIndex);
-    // }
+    new MatchesHandler().matchWinningNumber(
+      purchasedLottoList,
+      winningNumbers,
+      bonusNumber,
+    );
+
+    // 당첨 통계 프린트
+    this.output.printWinningStatistics(purchasedLottoList);
   }
 }
