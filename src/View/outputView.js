@@ -27,7 +27,7 @@ export class OutputHandler {
     );
   }
 
-  // printRateOfReturn() {
-  //   Console.print(`\n총 수익률은 $ {62.5}%입니다.`);
-  // }
+  printRateOfReturn(rateOfReturn) {
+    Console.print(`\n총 수익률은 ${rateOfReturn}%입니다.`);
+  }
 }
