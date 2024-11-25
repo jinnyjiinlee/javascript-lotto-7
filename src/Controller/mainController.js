@@ -3,6 +3,7 @@ import { OutputHandler } from '../View/outputView.js';
 
 import { calculatePurchaseCount } from '../Model/purchaseCountCalculator.js';
 import { issueLottoList } from '../Model/lottoListMaker.js';
+import { parseWinningNumbers } from '../Model/winningNumbersParser.js';
 
 export class MainController {
   constructor() {
@@ -21,6 +22,11 @@ export class MainController {
     this.output.printIssuedLottoList(purchasedLottoList);
 
     const winningNumbers = await this.input.getWinningNumbersInput();
+
+    const parsedWinningNUmbers = parseWinningNumbers(winningNumbers);
+
+    console.log('parsedWinningNUmbers: ', parsedWinningNUmbers)
+
     const bonusNumber = await this.input.getBonusNumberInput();
 
     //   this.output.printFinalWinners(parsedCarNames, findWinnerIndex);
