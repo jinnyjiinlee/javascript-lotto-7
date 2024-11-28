@@ -11,7 +11,7 @@ export class WinningNumbersValidator {
   }
 
   isEmpty() {
-    return this.winningNumbers[0] === '';
+    return this.winningNumbers[0] === 0;
   }
 
   isStringNumeric() {
