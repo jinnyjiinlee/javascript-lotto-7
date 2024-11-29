@@ -1,29 +1,26 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from '../Constant/messages.js';
-import { PurchaseAmountValidator } from '../Validation/purchaseAmountValidator.js';
-import { WinningNumbersValidator } from '../Validation/winningNumbersValidatior.js';
-import { BonusNumberValidator } from '../Validation/bonusNumberValidator.js';
+
+import { PurchaseAmount } from '../Validation/purchaseAmountValidator.js';
+import { BonusNumber } from '../Validation/bonusNumberValidator.js';
+import { WinningNumbers }  from '../Validation/winningNumberValidator.js';
 
 export class InputHandler {
   constructor() {
     this.purchaseAmount = null;
     this.winningNumbers = null;
     this.bonusNumber = null;
-
-    this.purchaseAmountValidator = new PurchaseAmountValidator();
-    this.winningNumbersValidator = new WinningNumbersValidator();
-    this.bonusNumberValidator = new BonusNumberValidator();
   }
 
+  // while 반복문 조건값이 true일 때, while문을 실행한다.
   async getPurchaseAmountInput() {
-    while (true) {
+    let validation = false;
+    while (!validation) {
+      this.purchaseAmount = await Console.readLineAsync(
+        INPUT_MESSAGES.PURCHASE_AMOUNT,
+      );
       try {
-        this.purchaseAmount = await Console.readLineAsync(
-          INPUT_MESSAGES.PURCHASE_AMOUNT,
-        );
-        this.purchaseAmountValidator.validatePurchaseAmount(
-          this.purchaseAmount,
-        );
+        validation = new PurchaseAmount(this.purchaseAmount);
         return this.purchaseAmount;
       } catch (e) {
         Console.print(e.message);
@@ -31,15 +28,15 @@ export class InputHandler {
     }
   }
 
+  // while 반복문 조건값이 true일 때, while문을 실행한다.
   async getWinningNumbersInput() {
-    while (true) {
+    let validation = false;
+    while (!validation) {
       try {
         this.winningNumbers = await Console.readLineAsync(
           INPUT_MESSAGES.WINNING_NUMBERS,
         );
-        this.winningNumbersValidator.validateWinningNumbers(
-          this.winningNumbers,
-        );
+        validation = new WinningNumbers(this.winningNumbers.split(',').map(Number));
         return this.winningNumbers;
       } catch (e) {
         Console.print(e.message);
@@ -48,12 +45,13 @@ export class InputHandler {
   }
 
   async getBonusNumberInput() {
-    while (true) {
+    let validation = false;
+    while (!validation) {
       try {
         this.bonusNumber = await Console.readLineAsync(
           INPUT_MESSAGES.BONUS_NUMBER,
         );
-        this.bonusNumberValidator.validateBonusNumber(this.bonusNumber, this.winningNumbers);
+        validation = new BonusNumber(this.bonusNumber, this.winningNumbers);
         return this.bonusNumber;
       } catch (e) {
         Console.print(e.message);

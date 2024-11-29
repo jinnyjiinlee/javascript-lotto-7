@@ -1,44 +1,28 @@
-export class BonusNumberValidator {
-  validateBonusNumber(bonusNumber, winningNumbers) {
-    this.bonusNumber = bonusNumber;
-    this.winningNumbers = winningNumbers.split(',');
-    this.winningNumbers = this.winningNumbers.map(Number);
-
-    this.getValidationChecks().forEach((arr) => {
-      if (arr[0]) throw new Error(arr[1]);
-    });
-
-    return true;
+export class BonusNumber {
+  constructor(bonusNumber, winningNumbers) {
+    winningNumbers = winningNumbers.split(',').map(Number);
+    this.validate(bonusNumber, winningNumbers);
   }
 
-  isEmpty() {
-    return this.bonusNumber === '';
-  }
+  validate(bonusNumber, winningNumbers) {
+    if (bonusNumber === '') {
+      throw new Error('[ERROR] 빈 값을 입력하셨습니다.');
+    }
 
-  isNotStringNumeric() {
-    return Number.isNaN(Number(this.bonusNumber));
-  }
+    if (Number.isNaN(Number(bonusNumber))) {
+      throw new Error('[ERROR] 숫자를 입력하지 않으셨습니다.');
+    }
 
-  isNotScope() {
-    return Number(this.bonusNumber) === 0 || Number(this.bonusNumber) > 45;
-  }
+    if (
+      winningNumbers.some(
+        (winningNumber) => winningNumber === Number(bonusNumber),
+      )
+    ) {
+      throw new Error('[ERROR] 당청 번호와 중복된 숫자를 입력하셨습니다.');
+    }
 
-  isDuplicateWithWinningNumber() {
-    return this.winningNumbers.some(
-      (number) => number === Number(this.bonusNumber),
-    );
-  }
-
-  // TODO: 리펙토링 - 상수처리
-  getValidationChecks() {
-    return [
-      [this.isEmpty(), '[ERROR] 빈 값을 입력하셨습니다.'],
-      [this.isNotStringNumeric(), '[ERROR] 숫자를 입력하지 않으셨습니다.'],
-      [
-        this.isNotScope(),
-        '[ERROR] 1부터 45사이 범위를 넘어가는 숫자를 입력하셨습니다.',
-      ],
-      [this.isDuplicateWithWinningNumber(), '[ERROR] 당첨 번호와 보너스 넘버가 중복됩니다.'],
-    ];
+    if (bonusNumber === 0 || bonusNumber > 45) {
+      throw new Error('[ERROR] 1부터 45까지의 숫자가 아닙니다.');
+    }
   }
 }
