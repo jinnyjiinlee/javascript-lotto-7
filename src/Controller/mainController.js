@@ -29,6 +29,7 @@ export class MainController {
     parseWinningNumbers(winningNumbers);
 
     const bonusNumber = await this.input.getBonusNumberInput();
+    
     new MatchesHandler().matchWinningNumber(
       purchasedLottoList,
       winningNumbers,

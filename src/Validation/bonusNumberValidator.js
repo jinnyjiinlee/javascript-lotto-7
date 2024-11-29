@@ -1,6 +1,5 @@
 export class BonusNumber {
   constructor(bonusNumber, winningNumbers) {
-    winningNumbers = winningNumbers.split(',').map(Number);
     this.validate(bonusNumber, winningNumbers);
   }
 
