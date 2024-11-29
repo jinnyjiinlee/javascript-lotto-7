@@ -1,13 +1,13 @@
 import { InputHandler } from '../View/inputView.js';
 import { OutputHandler } from '../View/outputView.js';
 
-import { calculatePurchaseCount } from '../Model/purchaseCountCalculator.js';
-import { issueLottoList } from '../Model/lottoListMaker.js';
-import { parseWinningNumbers } from '../Model/winningNumbersParser.js';
+import { calculatePurchaseCount } from '../Utils/purchaseCountCalculator.js';
+import { issueLottoList } from '../Utils/lottoListMaker.js';
+import { parseWinningNumbers } from '../Utils/winningNumbersParser.js';
 import { MatchesHandler } from '../Model/winningNumbersMatcher.js';
 
-import { calculateRateOfReturn } from '../Model/rateOfReturnCalculator.js';
-import { calculateTotalWinningAmount } from '../Model/totalWinningAmountCalculator.js';
+import { calculateRateOfReturn } from '../Utils/rateOfReturnCalculator.js';
+import { calculateTotalWinningAmount } from '../Utils/totalWinningAmountCalculator.js';
 
 // TODO: import 안되는 이유아시는 찾기
 
