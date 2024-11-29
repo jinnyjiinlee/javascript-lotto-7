@@ -1,8 +1,8 @@
-export class WinningNumbers {
+export class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.validate(numbers);
+    this.validate(numbers.split(',').map(Number));
     this.#numbers = numbers;
   }
 

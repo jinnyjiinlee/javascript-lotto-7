@@ -3,41 +3,56 @@ import { INPUT_MESSAGES } from '../Constant/messages.js';
 
 import { PurchaseAmount } from '../Validation/purchaseAmountValidator.js';
 import { BonusNumber } from '../Validation/bonusNumberValidator.js';
-import { WinningNumbers } from '../Validation/winningNumberValidator.js';
+import { Lotto } from '../Validation/winningNumberValidator.js';
 
 export class InputHandler {
+  constructor() {
+    this.winningNumber = null;
+  }
+
   async getPurchaseAmountInput() {
-    let isValid = false;
-    while (!isValid) {
-      this.purchaseAmount = await Console.readLineAsync(
-        INPUT_MESSAGES.PURCHASE_AMOUNT,
-      );
-      try {
-        isValid = new PurchaseAmount(this.purchaseAmount);
-        return this.purchaseAmount;
-      } catch (e) {
-        Console.print(e.message);
-      }
-    }
+    const inputMessage = INPUT_MESSAGES.PURCHASE_AMOUNT;
+    return this.validate(PurchaseAmount, inputMessage);
   }
 
   async getWinningNumbersInput() {
+    const inputMessage = INPUT_MESSAGES.WINNING_NUMBERS;
+    // 입력된 당첨 번호 문자열 저장
+    this.winningNumbers = await this.validate(Lotto, inputMessage);
+
+    return this.winningNumbers;
+  }
+
+  async validate(ValidationClass, message) {
     let isValid = false;
     while (!isValid) {
+      const input = await Console.readLineAsync(message);
       try {
-        this.winningNumbers = await Console.readLineAsync(
-          INPUT_MESSAGES.WINNING_NUMBERS,
-        );
-        const winningNumbersToArray = this.winningNumbers
-          .split(',')
-          .map(Number);
-        isValid = new WinningNumbers(winningNumbersToArray);
-        return this.winningNumbers;
+        isValid = new ValidationClass(input);
+        return input;
       } catch (e) {
         Console.print(e.message);
       }
     }
   }
+
+  // async getWinningNumbersInput() {
+  //   let isValid = false;
+  //   while (!isValid) {
+  //     try {
+  //       this.winningNumbers = await Console.readLineAsync(
+  //         INPUT_MESSAGES.WINNING_NUMBERS,
+  //       );
+  //       const winningNumbersToArray = this.winningNumbers
+  //         .split(',')
+  //         .map(Number);
+  //       isValid = new WinningNumbers(winningNumbersToArray);
+  //       return this.winningNumbers;
+  //     } catch (e) {
+  //       Console.print(e.message);
+  //     }
+  //   }
+  // }
 
   async getBonusNumberInput() {
     let isValid = false;
