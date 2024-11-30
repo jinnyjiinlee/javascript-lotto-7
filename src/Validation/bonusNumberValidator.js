@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from '../Constant/errorMessages.js';
+
 /* eslint-disable max-lines-per-function */
 export class BonusNumber {
   constructor(bonusNumber, winningNumbers) {
@@ -18,15 +20,15 @@ export class BonusNumber {
 
   validate(bonusNumber, winningNumbers) {
     if (this.isBlank(bonusNumber)) {
-      throw new Error('[ERROR] 빈 값을 입력하셨습니다.');
+      throw new Error(ERROR_MESSAGES.COMMON.BLANK);
     }
 
     if (this.isNotNumber(bonusNumber)) {
-      throw new Error('[ERROR] 숫자를 입력하지 않으셨습니다.');
+      throw new Error(ERROR_MESSAGES.COMMON.NOT_NUMBER);
     }
 
     if (this.isNotScope(bonusNumber)) {
-      throw new Error('[ERROR] 1부터 45까지의 숫자가 아닙니다.');
+      throw new Error(ERROR_MESSAGES.COMMON.NOT_SCOPE);
     }
 
     if (
@@ -34,7 +36,7 @@ export class BonusNumber {
         (winningNumber) => winningNumber === Number(bonusNumber),
       )
     ) {
-      throw new Error('[ERROR] 당청 번호와 중복된 숫자를 입력하셨습니다.');
+      throw new Error(ERROR_MESSAGES.BONUS_NUMBER.DUPLICATION);
     }
   }
 }

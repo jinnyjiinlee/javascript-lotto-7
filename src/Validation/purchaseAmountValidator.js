@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES } from '../Constant/errorMessages.js';
+
 export class PurchasePrice {
   constructor(purchasePrice) {
     this.validate(purchasePrice);
@@ -17,15 +19,15 @@ export class PurchasePrice {
 
   validate(purchasePrice) {
     if (this.isBlank(purchasePrice)) {
-      throw new Error('[ERROR] 빈 값을 입력하셨습니다.');
+      throw new Error(ERROR_MESSAGES.COMMON.BLANK);
     }
 
     if (this.isNotNumber(purchasePrice)) {
-      throw new Error('[ERROR] 숫자를 입력하지 않으셨습니다.');
+      throw new Error(ERROR_MESSAGES.COMMON.NOT_NUMBER);
     }
 
     if (this.isNotUnit(purchasePrice)) {
-      throw new Error('[ERROR] 1000원 단위가 아닙니다.');
+      throw new Error(ERROR_MESSAGES.PURCHASE_PRICE.NOT_UNIT);
     }
   }
 }
