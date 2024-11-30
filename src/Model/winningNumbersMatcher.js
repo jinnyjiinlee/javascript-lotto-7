@@ -6,45 +6,48 @@ export class MatchesHandler {
     this.winningNumbers = winningNumbers;
     this.bonusNumber = bonusNumber;
 
-    this.winningNumberToArr();
+    this.winningNumbersToArray();
     this.findSameNumbers();
     this.findSameNumberForBonus();
   }
 
-  winningNumberToArr() {
-    this.winningNumbers = this.winningNumbers.split(',');
-    this.winningNumbers = this.winningNumbers.map(Number);
+  winningNumbersToArray() {
+    this.winningNumbers = this.winningNumbers.split(',').map(Number);
   }
 
+  // refactor: it은 진짜아님
   findSameNumbers() {
-    for (let i = 0; i < this.lottoList.length; i += 1) {
+    for (const lotto of this.lottoList) {
       const sameNumberCount = this.winningNumbers.filter((it) =>
-        this.lottoList[i].includes(it),
+        lotto.includes(it),
       ).length;
-      // TODO: 리펙토링 - 간소화하게 하기
-      if (sameNumberCount === 3) {
-        MATCHES.THREE_MATCHES += 1;
-      }
 
-      if (sameNumberCount === 4) {
-        MATCHES.FOUR_MATCHES += 1;
-      }
-
-      if (sameNumberCount === 5) {
-        MATCHES.FIVE_MATCHES += 1;
-      }
-
-      if (sameNumberCount === 6) {
-        MATCHES.SIX_MATCHES += 1;
+      switch (sameNumberCount) {
+        case 3:
+          MATCHES.THREE_MATCHES += 1;
+          break;
+        case 4:
+          MATCHES.FOUR_MATCHES += 1;
+          break;
+        case 5:
+          MATCHES.FIVE_MATCHES += 1;
+          break;
+        case 6:
+          MATCHES.SIX_MATCHES += 1;
+          break;
+        default:
+          break;
       }
     }
   }
 
   findSameNumberForBonus() {
-    this.makeBonusNumberPlusArr();
-    for (let i = 0; i < this.lottoList.length; i += 1) {
+    // winningNUmber에서
+    this.addBonusNumberToWinningNumbersArray();
+    // eslint-disable-next-line no-restricted-syntax
+    for (const lotto of this.lottoList) {
       const sameNumberCount = this.winningNumberAndBonusNumber.filter((it) =>
-        this.lottoList[i].includes(it),
+        lotto.includes(it),
       ).length;
 
       if (sameNumberCount === 6) {
@@ -53,8 +56,7 @@ export class MatchesHandler {
     }
   }
 
-  makeBonusNumberPlusArr() {
-    this.winningNumberAndBonusNumber = [];
+  addBonusNumberToWinningNumbersArray() {
     this.winningNumberAndBonusNumber = [...this.winningNumbers];
     this.winningNumberAndBonusNumber.push(Number(this.bonusNumber));
   }

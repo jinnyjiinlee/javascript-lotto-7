@@ -1,2 +1,2 @@
-export const calculateRateOfReturn = (purchaseAmount, totalWinningAmount) =>
-  ((totalWinningAmount / purchaseAmount) * 100).toFixed(1);
+export const calculateRateOfReturn = (purchasePrice, totalWinningAmount) =>
+  ((totalWinningAmount / purchasePrice) * 100).toFixed(1);

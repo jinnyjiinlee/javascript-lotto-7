@@ -24,7 +24,7 @@ export class Lotto {
       throw new Error('[ERROR] 중복된 숫자를 입력하셨습니다.');
     }
 
-    if (numbers.some((number) => number === 0 || number > 45)) {
+    if (numbers.some((number) => number < 0 || number > 45)) {
       throw new Error('[ERROR] 1부터 45까지의 숫자가 아닙니다.');
     }
   }
