@@ -1,2 +1,4 @@
-// TODO: 리펙토링 - 상수처리
-export const calculatePurchaseCount = (purchasePrice) => purchasePrice / 1000;
+import { LOTTO_UNIT } from '../Constant/constants.js';
+
+export const calculatePurchaseCount = (purchasePrice) =>
+  purchasePrice / LOTTO_UNIT;

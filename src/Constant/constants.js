@@ -5,3 +5,5 @@ export const MATCHES = {
   FIVE_MATCHES_BONUS: 0,
   SIX_MATCHES: 0,
 };
+
+export const LOTTO_UNIT = 1000;

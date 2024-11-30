@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from '../Constant/messages.js';
 
-import { PurchasePrice } from '../Validation/purchaseAmountValidator.js';
+import { PurchasePrice } from '../Validation/purchasePriceValidator.js';
 import { Lotto } from '../Validation/winningNumberValidator.js';
 import { BonusNumber } from '../Validation/bonusNumberValidator.js';
 

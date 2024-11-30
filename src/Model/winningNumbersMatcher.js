@@ -18,8 +18,8 @@ export class MatchesHandler {
   // refactor: it은 진짜아님
   findSameNumbers() {
     for (const lotto of this.lottoList) {
-      const sameNumberCount = this.winningNumbers.filter((it) =>
-        lotto.includes(it),
+      const sameNumberCount = this.winningNumbers.filter((lottoList) =>
+        lotto.includes(lottoList),
       ).length;
 
       switch (sameNumberCount) {
@@ -42,12 +42,11 @@ export class MatchesHandler {
   }
 
   findSameNumberForBonus() {
-    // winningNUmber에서
     this.addBonusNumberToWinningNumbersArray();
-    // eslint-disable-next-line no-restricted-syntax
+
     for (const lotto of this.lottoList) {
-      const sameNumberCount = this.winningNumberAndBonusNumber.filter((it) =>
-        lotto.includes(it),
+      const sameNumberCount = this.winningNumberAndBonusNumber.filter((lottoList) =>
+        lotto.includes(lottoList),
       ).length;
 
       if (sameNumberCount === 6) {

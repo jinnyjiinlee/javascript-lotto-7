@@ -15,7 +15,6 @@ export class MainController {
     this.output = new OutputHandler();
   }
 
-  // eslint-disable-next-line max-lines-per-function
   async startProgram() {
     const purchasePrice = await this.input.getPurchaseAmountInput();
     const purchaseCount = calculatePurchaseCount(purchasePrice);
@@ -26,9 +25,7 @@ export class MainController {
 
     const winningNumbers = await this.input.getWinningNumbersInput();
     splitWinningNumbersToArray(winningNumbers);
-
     const bonusNumber = await this.input.getBonusNumberInput();
-
     new MatchesHandler().matchWinningNumber(
       purchasedLottoList,
       winningNumbers,
@@ -37,12 +34,10 @@ export class MainController {
     this.output.printWinningStatistics(purchasedLottoList);
 
     const totalWinningAmount = calculateTotalWinningAmount();
-
     const rateOfReturn = calculateRateOfReturn(
       purchasePrice,
       totalWinningAmount,
     );
-
     this.output.printRateOfReturn(rateOfReturn);
   }
 }

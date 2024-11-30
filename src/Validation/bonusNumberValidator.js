@@ -31,11 +31,7 @@ export class BonusNumber {
       throw new Error(ERROR_MESSAGES.COMMON.NOT_SCOPE);
     }
 
-    if (
-      winningNumbers.some(
-        (winningNumber) => winningNumber === Number(bonusNumber),
-      )
-    ) {
+    if (winningNumbers.some((winningNumber) => winningNumber === Number(bonusNumber))) {
       throw new Error(ERROR_MESSAGES.BONUS_NUMBER.DUPLICATION);
     }
   }
