@@ -1,0 +1,9 @@
+export const MATCHES = {
+  THREE_MATCHES: 0,
+  FOUR_MATCHES: 0,
+  FIVE_MATCHES: 0,
+  FIVE_MATCHES_BONUS: 0,
+  SIX_MATCHES: 0,
+};
+
+export const LOTTO_UNIT = 1000;
