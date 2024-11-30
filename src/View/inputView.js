@@ -1,7 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { INPUT_MESSAGES } from '../Constant/messages.js';
 
-import { purchasePrice } from '../Validation/purchaseAmountValidator.js';
+import { PurchasePrice } from '../Validation/purchaseAmountValidator.js';
 import { Lotto } from '../Validation/winningNumberValidator.js';
 import { BonusNumber } from '../Validation/bonusNumberValidator.js';
 
@@ -12,7 +12,7 @@ export class InputHandler {
 
   async getPurchaseAmountInput() {
     const inputMessage = INPUT_MESSAGES.PURCHASE_AMOUNT;
-    return this.validate(purchasePrice, inputMessage);
+    return this.validate(PurchasePrice, inputMessage);
   }
 
   async getWinningNumbersInput() {
